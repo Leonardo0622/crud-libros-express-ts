@@ -1,5 +1,33 @@
+# dependencies
 node_modules/
+
+# builds
 dist/
+build/
+**/dist/
+**/build/
+
+# env
 .env
+.env.*
+!.env.example
+!**/.env.example
+
+# logs
 *.log
+npm-debug.log*
+
+# typescript
+*.tsbuildinfo
+
+# tests / coverage
+coverage/
+
+# os / editors
 .DS_Store
+Thumbs.db
+
+# vite / turbo / vercel
+.vite/
+.turbo/
+.vercel
