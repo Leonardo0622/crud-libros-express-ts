@@ -275,12 +275,20 @@ autenticación (login/me/logout).
 
 1. Importa el repositorio en Vercel.
 2. **Root Directory**: `apps/web` (Vercel detecta Vite automáticamente).
-3. **Build Command**: `npm run build` · **Output Directory**: `dist`.
+3. El `apps/web/vercel.json` ya define la configuración del monorepo:
+   - **Install Command**: `cd ../.. && npm install`
+   - **Build Command**: `cd ../.. && npm run build:types && npm run build:web`
+   - **Output Directory**: `dist`
+   - *Rewrite* SPA: todas las rutas → `index.html` (necesario para `/libros/:id` y `/<admin-path>`).
 4. Variables de entorno:
-   - `VITE_API_URL` = URL pública de la API (p. ej. `https://libra-api.onrender.com`)
+   - `VITE_API_URL` = URL pública de la API (p. ej. `https://mi-api.onrender.com`)
    - `VITE_ADMIN_PATH` = mismo valor que `ADMIN_PATH` del API
-5. El `vercel.json` incluido añade el rewrite SPA (todas las rutas → `index.html`), necesario para
-   `/libros/:id` y `/<admin-path>`.
+5. Si usas la **raíz del repositorio** como Root Directory (en vez de `apps/web`), ya existe un
+   `vercel.json` en la raíz con el equivalente (`buildCommand`/`outputDirectory: apps/web/dist`).
+
+> **Importante:** el build del frontend debe compilar antes `packages/types` (`npm run build:types`),
+> porque el frontend lo importa. Sin su carpeta `dist`, el `vite build` falla y Vercel sigue sirviendo
+> el último despliegue correcto (frontend antiguo).
 
 ### API (Render)
 

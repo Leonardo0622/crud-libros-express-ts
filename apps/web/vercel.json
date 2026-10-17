@@ -1,3 +1,6 @@
 {
+  "installCommand": "cd ../.. && npm install",
+  "buildCommand": "cd ../.. && npm run build:types && npm run build:web",
+  "outputDirectory": "dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
