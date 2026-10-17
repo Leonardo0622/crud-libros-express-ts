@@ -15,10 +15,10 @@ export const login: RequestHandler = async (req, res) => {
 
 export const logout: RequestHandler = (_req, res) => {
   res.clearCookie(AUTH_COOKIE, {
-    httpOnly: true,
-    sameSite: "lax",
+    httpOnly: authCookieOptions.httpOnly,
+    sameSite: authCookieOptions.sameSite,
     secure: authCookieOptions.secure,
-    path: "/",
+    path: authCookieOptions.path,
   });
   res.status(204).send();
 };

@@ -7,7 +7,12 @@ describe("Health y rutas base", () => {
     const res = await request(app).get("/");
     expect(res.status).toBe(200);
     expect(res.body.message).toContain("API CRUD Libros");
-    expect(res.body.endpoints).toEqual({ libros: "/libros", auth: "/auth" });
+    expect(res.body.endpoints).toEqual({
+      catalogoPublico: "/libros",
+      admin: "/admin",
+      auth: "/auth",
+      health: "/health",
+    });
   });
 
   it("GET /health responde ok", async () => {

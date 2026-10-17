@@ -8,6 +8,7 @@ import { apiRateLimiter } from "./middleware/rateLimit";
 import { errorHandler } from "./middleware/errorHandler";
 import { NotFoundError } from "./utils/errors";
 import { librosRouter } from "./routes/libros";
+import { adminRouter } from "./routes/admin";
 import { authRouter } from "./routes/auth";
 
 export const app = express();
@@ -37,10 +38,12 @@ if (isProduction) {
 app.get("/", (_req, res) => {
   res.json({
     message: "API CRUD Libros funcionando",
-    version: "1.0.0",
+    version: "1.1.0",
     endpoints: {
-      libros: "/libros",
+      catalogoPublico: "/libros",
+      admin: "/admin",
       auth: "/auth",
+      health: "/health",
     },
   });
 });
@@ -51,7 +54,8 @@ app.get("/health", (_req, res) => {
 });
 
 // Rutas
-app.use("/libros", librosRouter);
+app.use("/libros", librosRouter); // público (solo lectura, solo publicados)
+app.use("/admin", adminRouter); // privado (requiere sesión)
 app.use("/auth", authRouter);
 
 // 404 para rutas no encontradas

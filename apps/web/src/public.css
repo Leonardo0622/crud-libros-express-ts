@@ -1,0 +1,634 @@
+/* =========================================================================
+   Estilos de las páginas públicas de Libra (catálogo para lectores).
+   Se apoyan en las variables visuales del panel (tema oscuro, acentos violáceos).
+   ========================================================================= */
+
+.public-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #080d18;
+}
+
+/* ------------------------------- Cabecera ------------------------------- */
+
+.public-header {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: #0a1120e6;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1b273b;
+}
+
+.public-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 24px;
+}
+
+.public-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  color: #edf2ff;
+  text-decoration: none;
+}
+
+.public-brand-name {
+  text-transform: lowercase;
+}
+
+.public-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+}
+
+.public-nav-link {
+  padding: 8px 13px;
+  border-radius: 8px;
+  color: #9aa7bd;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.public-nav-link:hover {
+  background: #18233a;
+  color: #edf2ff;
+}
+
+.public-nav-link.active {
+  background: #18233a;
+  color: #edf2ff;
+  box-shadow: inset 0 -2px 0 #6978f4;
+}
+
+.public-admin-link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #b3bdf7;
+  background: #18233a;
+  border: 1px solid #26344b;
+  padding: 9px 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.public-admin-link:hover {
+  background: #1e2b47;
+  color: #dfe5ff;
+}
+
+.public-admin-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.public-main {
+  flex: 1;
+}
+
+/* --------------------------------- Pie --------------------------------- */
+
+.public-footer {
+  border-top: 1px solid #1b273b;
+  background: #0a1120;
+}
+
+.public-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #71809a;
+  font-size: 12px;
+}
+
+.public-footer-inner p {
+  margin: 0;
+}
+
+.public-brand-small {
+  font-size: 16px;
+}
+
+.public-footer-nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.public-footer-nav a {
+  color: #8fa0f0;
+  text-decoration: none;
+}
+
+.public-footer-nav a:hover {
+  color: #b3bdf7;
+  text-decoration: underline;
+}
+
+/* ------------------------------- Inicio ------------------------------- */
+
+.home-hero {
+  padding: 66px 24px 30px;
+  background: radial-gradient(900px 460px at 15% -30%, #1c2551 0%, transparent 62%);
+}
+
+.home-hero-content {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.home-hero h1 {
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 12px 0 14px;
+}
+
+.home-hero h1 span {
+  color: #7d89f6;
+}
+
+.home-hero-sub {
+  color: #93a0b6;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 620px;
+}
+
+.home-search,
+.catalog-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0d1423;
+  border: 1px solid #26344b;
+  border-radius: 12px;
+  padding: 8px 8px 8px 14px;
+  margin-top: 26px;
+  max-width: 620px;
+}
+
+.home-search svg,
+.catalog-search svg {
+  width: 17px;
+  height: 17px;
+  color: #667791;
+  flex-shrink: 0;
+}
+
+.home-search input,
+.catalog-search input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #dce4f2;
+  font: inherit;
+  font-size: 14px;
+  min-width: 0;
+}
+
+.home-hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.home-hero-actions a {
+  text-decoration: none;
+}
+
+.home-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px 24px 64px;
+}
+
+.home-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.home-section-head h2 {
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  margin: 0 0 5px;
+}
+
+.home-section-head p {
+  margin: 0;
+  color: #7c8aa1;
+  font-size: 13px;
+}
+
+.home-section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #929ffb;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-section-link svg {
+  width: 15px;
+  height: 15px;
+}
+
+.home-section-link:hover {
+  color: #b3bdf7;
+}
+
+/* ------------------------------ Catálogo ------------------------------ */
+
+.catalog-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 52px 24px 8px;
+}
+
+.catalog-hero h1 {
+  font-size: 32px;
+  letter-spacing: -0.04em;
+  margin: 12px 0 10px;
+}
+
+.catalog-hero-sub {
+  margin: 0;
+  color: #93a0b6;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+.catalog-results {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px 70px;
+}
+
+.catalog-count {
+  color: #71809a;
+  font-size: 12px;
+  margin: 0 0 18px;
+}
+
+.catalog-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 36px;
+  color: #8693a8;
+  font-size: 13px;
+}
+
+/* --------------------------- Tarjetas de libro --------------------------- */
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+.book-card {
+  background: #101929;
+  border: 1px solid #1d2a40;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  border-color: #3a49a0;
+  box-shadow: 0 16px 34px -18px #000a;
+}
+
+.book-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-cover {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  border-radius: 0;
+}
+
+.book-card-body {
+  padding: 14px 15px 18px;
+}
+
+.book-card-title {
+  font-size: 14px;
+  margin: 0 0 4px;
+  line-height: 1.35;
+  color: #e6edf7;
+}
+
+.book-card-author {
+  font-size: 12px;
+  color: #929ffb;
+  margin: 0 0 9px;
+}
+
+.book-card-desc {
+  font-size: 12px;
+  color: #8693a8;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.book-card-desc.muted {
+  color: #5e6d85;
+  font-style: italic;
+}
+
+/* -------------------------- Detalle de libro -------------------------- */
+
+.detail-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 38px 24px 74px;
+}
+
+.detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #929ffb;
+  font-size: 13px;
+  text-decoration: none;
+  margin-bottom: 22px;
+}
+
+.detail-back svg {
+  width: 15px;
+  height: 15px;
+}
+
+.detail-back:hover {
+  color: #b3bdf7;
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 34px;
+  background: #101929;
+  border: 1px solid #1d2a40;
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.detail-cover {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.detail-body h1 {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 8px 0 8px;
+}
+
+.detail-author {
+  color: #929ffb;
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+
+.detail-desc {
+  color: #b6c0d2;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.detail-desc.muted {
+  color: #71809a;
+  font-style: italic;
+}
+
+.detail-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #71809a;
+  font-size: 12px;
+  margin: 24px 0 0;
+}
+
+.detail-meta svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* -------------------------------- Ayuda -------------------------------- */
+
+.help-wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 46px 24px 74px;
+}
+
+.help-wrap h1 {
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  margin: 12px 0 12px;
+}
+
+.help-intro {
+  color: #93a0b6;
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.help-card {
+  background: #101929;
+  border: 1px solid #1d2a40;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.help-card-head {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 15px;
+}
+
+.help-card-head h2 {
+  font-size: 17px;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.help-steps {
+  color: #b6c0d2;
+  font-size: 13.5px;
+  line-height: 1.85;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.help-steps li {
+  margin-bottom: 4px;
+}
+
+.help-steps svg {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+}
+
+.help-wrap a {
+  color: #929ffb;
+  text-decoration: none;
+}
+
+.help-wrap a:hover {
+  text-decoration: underline;
+}
+
+.help-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 16px 0 0;
+  color: #8b98ad;
+  font-size: 12px;
+  line-height: 1.6;
+  background: #0d1423;
+  border: 1px solid #1d2a40;
+  border-radius: 9px;
+  padding: 12px;
+}
+
+.help-note svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.help-faq {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.help-faq dt {
+  color: #dce4f2;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.help-faq dd {
+  margin: 3px 0 0;
+  color: #93a0b6;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ------------------------- Responsive público ------------------------- */
+
+@media (max-width: 760px) {
+  .home-hero h1 {
+    font-size: 32px;
+  }
+  .catalog-hero h1 {
+    font-size: 26px;
+  }
+  .detail-card {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 22px;
+  }
+  .detail-cover {
+    max-width: 220px;
+  }
+  .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 620px) {
+  .public-header-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+  .public-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+  }
+  .public-admin-link span {
+    display: none;
+  }
+  .public-admin-link {
+    padding: 9px;
+  }
+  .home-hero,
+  .catalog-hero,
+  .home-section,
+  .catalog-results,
+  .detail-wrap,
+  .help-wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .home-search {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+  .home-search svg {
+    display: none;
+  }
+  .home-search input {
+    padding: 6px 2px;
+  }
+  .home-section-head {
+    display: block;
+  }
+  .home-section-link {
+    margin-top: 8px;
+  }
+}

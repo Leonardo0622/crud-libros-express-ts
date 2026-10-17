@@ -28,8 +28,9 @@ export function verifyToken(token: string): AuthUser {
 /** Cookie HttpOnly que transporta el JWT. */
 export const authCookieOptions: CookieOptions = {
   httpOnly: true,
-  sameSite: "lax",
-  secure: isProduction,
+  sameSite: env.COOKIE_SAMESITE,
+  // SameSite=None exige Secure; en producción siempre es Secure (HTTPS).
+  secure: isProduction || env.COOKIE_SAMESITE === "none",
   path: "/",
   maxAge: 2 * 60 * 60 * 1000, // 2 h
 };

@@ -2,11 +2,22 @@ import { z } from "zod";
 
 /* ============================== Libros ============================== */
 
+/**
+ * Estado de publicación de un libro.
+ *  - `borrador`   → solo visible en el panel de administración.
+ *  - `publicado`  → visible en el catálogo público para cualquier visitante.
+ */
+export const estadoLibroSchema = z.enum(["borrador", "publicado"]);
+export type EstadoLibro = z.infer<typeof estadoLibroSchema>;
+
 /** Entidad Libro tal como la devuelve la API (id numérico). */
 export const libroSchema = z.object({
   id: z.number().int().positive(),
   titulo: z.string(),
   autor: z.string(),
+  descripcion: z.string(),
+  imagenUrl: z.string().nullable(),
+  estado: estadoLibroSchema,
   createdAt: z.string(),
   updatedAt: z.string(),
 });
@@ -24,16 +35,34 @@ export const libroInputSchema = z.object({
     .trim()
     .min(1, "El autor no puede estar vacío")
     .max(120, "El autor no puede superar los 120 caracteres"),
+  descripcion: z
+    .string()
+    .trim()
+    .max(2000, "La descripción no puede superar los 2000 caracteres")
+    .optional()
+    .default(""),
+  imagenUrl: z
+    .union([z.url({ error: "La URL de la imagen no es válida" }), z.null()])
+    .optional()
+    .default(null),
+  estado: estadoLibroSchema.optional().default("borrador"),
 });
 export type LibroInput = z.infer<typeof libroInputSchema>;
 export const libroUpdateSchema = libroInputSchema;
+
+/** Cambio de estado de publicación (publicar / retirar). */
+export const libroEstadoSchema = z.object({ estado: estadoLibroSchema });
+export type LibroEstadoInput = z.infer<typeof libroEstadoSchema>;
 
 /** Query params del listado (page/limit/filtros). */
 export const libroQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
   limit: z.coerce.number().int().min(1).max(50).default(10),
+  /** Búsqueda combinada por título o autor. */
+  q: z.string().trim().min(1).optional(),
   titulo: z.string().trim().min(1).optional(),
   autor: z.string().trim().min(1).optional(),
+  estado: estadoLibroSchema.optional(),
 });
 export type LibroQuery = z.infer<typeof libroQuerySchema>;
 
@@ -42,6 +71,27 @@ export const libroIdParamSchema = z.object({
   id: z.coerce.number().int().positive("El id debe ser un entero positivo"),
 });
 export type LibroIdParam = z.infer<typeof libroIdParamSchema>;
+
+/** Contadores para el panel de administración. */
+export interface LibroEstadisticas {
+  total: number;
+  publicados: number;
+  borradores: number;
+}
+
+/* ========================= Subida de portadas ========================= */
+
+/** Tipos MIME aceptados para las portadas (compartido frontend/backend). */
+export const PORTADA_MIME_TIPOS = [
+  "image/png",
+  "image/jpeg",
+  "image/webp",
+  "image/gif",
+] as const;
+export type PortadaMime = (typeof PORTADA_MIME_TIPOS)[number];
+
+/** Tamaño máximo de una portada (5 MB). */
+export const PORTADA_MAX_BYTES = 5 * 1024 * 1024;
 
 /* =========================== Autenticación =========================== */
 
@@ -90,6 +140,14 @@ export interface LibroListResponse {
 
 export interface LibroResponse {
   data: Libro;
+}
+
+export interface EstadisticasResponse {
+  data: LibroEstadisticas;
+}
+
+export interface PortadaResponse {
+  data: { url: string };
 }
 
 export interface AuthResponse {

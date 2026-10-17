@@ -33,6 +33,17 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     return;
   }
 
+  // Errores de los parsers de body (p. ej. cuerpo demasiado grande)
+  const status = (err as { status?: unknown; statusCode?: unknown } | null)?.status;
+  const statusCode = (err as { statusCode?: unknown } | null)?.statusCode;
+  const httpStatus = typeof status === "number" ? status : typeof statusCode === "number" ? statusCode : undefined;
+  if (httpStatus !== undefined && httpStatus >= 400 && httpStatus < 500) {
+    res.status(httpStatus).json({
+      error: httpStatus === 413 ? "El archivo es demasiado grande" : "Solicitud inválida",
+    });
+    return;
+  }
+
   // Errores de PostgreSQL
   const pgCode =
     typeof err === "object" && err !== null && "code" in err
